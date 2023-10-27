@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Адмін-панель повідомлень</title>
+  </head>
+  <body>
+    <h1>Адмін-панель повідомлень</h1>
+
+    <!-- Форма для введення тексту повідомлення та вибору, кому його надсилати -->
+    <form method="POST">
+      <label for="text">Текст повідомлення:</label>
+      <input type="text" name="text" required />
+
+      <label for="send_to_all">Надіслати всім:</label>
+      <input type="checkbox" name="send_to_all" id="send_to_all" />
+
+      <button type="submit">Відправити повідомлення</button>
+    </form>
+
+    <!-- Список раніше надісланих повідомлень -->
+    <h2>Існуючі електронні адреси користувачів:</h2>
+    <ul>
+      {% for email in existing_emails %}
+      <li>{{ email }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

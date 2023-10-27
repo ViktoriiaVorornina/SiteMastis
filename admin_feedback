@@ -1,0 +1,14 @@
+<h1>Адмін-панель</h1>
+<h2>Фідбек</h2>
+<table>
+  <tr>
+    <th>Назва івенту</th>
+    <th>Коментар</th>
+  </tr>
+  {% for feedback_entry in feedback_entries %}
+  <tr>
+    <td>{{ feedback_entry.event_name }}</td>
+    <td>{{ feedback_entry.comment }}</td>
+  </tr>
+  {% endfor %}
+</table>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Магістерська програма</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="video-container">
+      <video autoplay muted loop id="background-video">
+        <source
+          src="{{ url_for('static', filename='background-video-1.mp4') }}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <div class="content-container">
+      <main>
+        <div class="content">
+          <section id="about-program">
+            <h2>
+              <img src="static/mastis.png" alt="Лого" width="100" height="70" />
+              Створення сучасних магістерських досліджень інформаційних систем
+            </h2>
+            <h3>Чому ви маєте стати частиною нас?</h3>
+            <p>
+              Основною метою проекту «Створення сучасних магістерських
+              досліджень інформаційних систем» (MASTIS) є вдосконалення
+              інформаційних систем відповідно до потреб сучасного суспільства.
+              MASTIS дозволить країнам-партнерам і університетам ЄС
+              модернізувати освіту в інформаційній системі на основі принципів,
+              орієнтованих на студента, міцної співпраці між університетами та
+              підприємствами та сучасних підходів до освіти. Це дасть можливість
+              університетам країн-партнерів готувати конкурентоспроможних
+              спеціалістів для українського, чорногорського та світового ринку
+              праці.
+            </p>
+          </section>
+
+          <div class="buttons">
+            <button id="load-more-button" class="rounded-button">Івенти</button>
+            <a href="https://mastis.competence.in.ua/" class="rounded-button"
+              >Більше про проект</a
+            >
+            <button id="registration-button" class="rounded-button">
+              Реєстрація
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      // Отримуємо посилання на кнопку за її id
+      var registrationButton = document.getElementById("registration-button");
+
+      // Додаємо обробник подій для кліку на кнопці
+      registrationButton.addEventListener("click", function () {
+        // Тут ви можете вказати код, який виконується при кліку на кнопку "Реєстрація"
+        // Наприклад, відкриття сторінки реєстрації
+        window.location.href = "/registration"; // За посиланням "/registration" має бути URL сторінки реєстрації
+      });
+    </script>
+    <script>
+      // Отримуємо посилання на кнопку за її id
+      var loadMoreButton = document.getElementById("load-more-button");
+
+      // Додаємо обробник подій для кліку на кнопці
+      loadMoreButton.addEventListener("click", function () {
+        // Тут ви можете вказати код, який виконується при кліку на кнопку "Більше"
+        // Наприклад, завантаження додаткової інформації або перехід на іншу сторінку
+        // Наприклад, ви можете використовувати window.location.href для переходу на іншу сторінку
+        window.location.href = "/load-more";
+      });
+    </script>
+  </body>
+</html>

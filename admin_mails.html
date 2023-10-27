@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Адмін-панель</title>
+  </head>
+  <body>
+    <h1>Адмін-панель</h1>
+    <table>
+      <tr>
+        <th>Ім'я</th>
+        <th>Прізвище</th>
+        <th>Email</th>
+        <!-- Додайте інші поля користувача, які вас цікавлять -->
+      </tr>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.surname }}</td>
+        <td>{{ user.email }}</td>
+        <!-- Відображайте інші дані користувача, які вас цікавлять -->
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

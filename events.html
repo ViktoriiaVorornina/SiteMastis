@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Загальні стилі для сторінки */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+
+      /* Стилі для заголовків */
+      .title {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: linear-gradient(
+          45deg,
+          orange,
+          red
+        ); /* Красно-оранжевий перелив */
+        margin-left: 10px;
+      }
+
+      /* Контейнер для міні-контейнерів */
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 3cm;
+      }
+
+      /* Стилі для міні-контейнерів */
+      .mini-container {
+        width: calc(20% - 20px);
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        text-align: justify;
+        background-color: orange;
+        align-items: flex-end;
+      }
+
+      /* Стилі для картинки */
+      .image {
+        width: 100%;
+        height: auto;
+      }
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+      }
+
+      /* Стилі для кнопки "Більше" */
+      .rounded-button {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 25px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+      .centered-button {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+    <title>Міні-контейнери</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="title">Майбутні івенти</h2>
+      <div class="header">
+        <button id="registration-button" class="rounded-button">
+          Реєстрація
+        </button>
+      </div>
+      <div class="container">
+        {% for event in events %} {% if event.type == "Майбутній" %}
+        <div class="mini-container">
+          <img
+            class="image"
+            src="{{ url_for('static', filename='hat.png') }}"
+            alt="Зображення"
+            style="width: 50px; height: 50px"
+          />
+          <div class="event-info">
+            <h3>{{ event.name }}</h3>
+            <p>{{ event.date }}</p>
+            <p>{{ event.speaker }}</p>
+            <p>{{ event.description }}</p>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+
+    <div class="container">
+      <h2 class="title">Минулі івенти</h2>
+    </div>
+    <div class="container">
+      {% for event in events %} {% if event.type == "Минулий" %}
+      <div class="mini-container" style="margin: 0 80px">
+        <img
+          class="image"
+          src="{{ url_for('static', filename='hat.png') }}"
+          alt="Зображення"
+          style="width: 50px; height: 50px"
+        />
+        <div class="event-info">
+          <h3>{{ event.name }}</h3>
+          <p>{{ event.date }}</p>
+          <p>{{ event.speaker }}</p>
+          <p>{{ event.description }}</p>
+        </div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+
+    <script>
+      // Отримуємо посилання на кнопку за її id
+      var registrationButton = document.getElementById("registration-button");
+
+      // Додаємо обробник подій для кліку на кнопці
+      registrationButton.addEventListener("click", function () {
+        // Перенаправляємо користувача на сторінку авторизації
+        window.location.href = "/registration";
+      });
+    </script>
+  </body>
+</html>

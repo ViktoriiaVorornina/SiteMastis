@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сторінка авторизації</title>
+    <style>
+      /* Стилі для контейнера */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* Стилі для форми */
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px black;
+        width: 300px;
+      }
+
+      /* Стилі для тексту "Авторизація" */
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      /* Стилі для текстових полів та кнопки */
+      input {
+        display: block;
+        margin: 10px 0;
+        padding: 5px;
+        width: 100%;
+      }
+
+      button {
+        display: block;
+        margin: 10px auto;
+        background-color: orange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      #login-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px black;
+        width: 300px; /* Змініть ширину за потребою */
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registration-form" method="post" action="/registration">
+      <h1>Реєстрація</h1>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %} {% endwith %}
+      <input type="text" placeholder="Ім'я" name="name" />
+      <input type="text" placeholder="Прізвище" name="surname" />
+      <input
+        type="email"
+        placeholder="Email"
+        name="email"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Введіть дійсний email адресу"
+      />
+      <input
+        type="password"
+        placeholder="Пароль (мінімум 8 символів, включаючи великі літери та цифри)"
+        name="password"
+        required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+        title="Мінімум 8 символів, включаючи великі літери та цифри"
+      />
+      <button type="submit" id="registration-button">Зареєструватися</button>
+      <a href="/login" style="display: block; text-align: center">Вхід</a>
+    </form>
+    <script>
+      var registrationButton = document.getElementById("registration-button");
+      var loginButton = document.getElementById("login-modal-button");
+      var registrationForm = document.getElementById("registration-form");
+      var loginFormModal = document.getElementById("login-form");
+
+      registrationButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Зупиняємо діяння кнопки за замовчуванням (відправку GET-запиту)
+
+        // Отримуємо поточний URL
+        var currentURL = window.location.href;
+
+        // Перевіряємо, чи користувач знаходиться на сторінці реєстрації
+        if (currentURL.endsWith("/registration")) {
+          // Отримуємо дані форми реєстрації
+          var formData = new FormData(registrationForm);
+
+          // Встановлюємо метод POST для форми реєстрації
+          registrationForm.method = "POST";
+
+          // Відправляємо форму реєстрації на сервер
+          registrationForm.submit();
+        }
+      });
+
+      loginButton.addEventListener("click", function () {
+        var modal = document.getElementById("login-modal");
+        modal.style.display = "block";
+      });
+
+      document
+        .getElementById("close-button")
+        .addEventListener("click", function () {
+          var modal = document.getElementById("login-modal");
+          modal.style.display = "none";
+        });
+
+      loginFormModal.addEventListener("submit", function (event) {
+        event.preventDefault(); // Зупиняємо діяння кнопки за замовчуванням (відправку POST-запиту)
+
+        // Отримуємо введений логін та пароль
+        var loginInput = document.getElementById("login-username");
+        var passwordInput = document.getElementById("login-password");
+        var login = loginInput.value;
+        var password = passwordInput.value;
+
+        // Тут можна виконати перевірку логіна і пароля, або ж просто відзначити, що користувач намагається увійти.
+
+        // Після валідації можна перенаправити користувача на /last-page.
+        window.location.href = "/last-page";
+      });
+    </script>
+  </body>
+</html>

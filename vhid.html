@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Авторизація</title>
+    <style>
+      /* Стилі для контейнера авторизації */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* Стилі для форми авторизації */
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px black;
+        width: 300px;
+      }
+
+      /* Стилі для тексту "Авторизація" */
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      /* Стилі для текстових полів та кнопки */
+      input {
+        display: block;
+        margin: 10px 0;
+        padding: 5px;
+        width: 100%;
+      }
+
+      button {
+        display: block;
+        margin: 10px auto;
+        background-color: orange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="login-form" method="post" action="/last-page">
+      <!-- Заголовок форми і поля вводу залишаються незмінними -->
+      <h1>Авторизація</h1>
+      <input type="text" name="login" placeholder="Електронна пошта" required />
+      <input
+        type="password"
+        name="login-password"
+        placeholder="Пароль"
+        required
+      />
+
+      <button type="submit" id="login-button">Увійти</button>
+    </form>
+
+    <script>
+      var loginButton = document.getElementById("login-button");
+
+      loginButton.addEventListener("click", function (event) {
+        var loginInput = document.querySelector('input[name="login"]');
+        var passwordInput = document.querySelector(
+          'input[name="login-password"]'
+        );
+
+        if (
+          loginInput.value.trim() === "" ||
+          passwordInput.value.trim() === ""
+        ) {
+          event.preventDefault();
+          alert("Будь ласка, заповніть усі поля.");
+        }
+      });
+    </script>
+  </body>
+</html>

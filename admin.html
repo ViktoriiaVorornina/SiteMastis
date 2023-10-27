@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <form method="POST" action="/add_event">
+      <label for="name">Назва івенту:</label>
+      <input type="text" name="name" required /><br />
+
+      <label for="date">Дата:</label>
+      <input type="date" name="date" required /><br />
+
+      <label for="description">Опис:</label>
+      <textarea name="description"></textarea><br />
+
+      <label for="speaker">Спікер:</label>
+      <input type="text" name="speaker" /><br />
+
+      <label for="type">Тип івенту:</label>
+      <select name="type">
+        <option value="Майбутній">Майбутній</option>
+        <option value="Минулий">Минулий</option></select
+      ><br />
+
+      <button type="submit">Додати івент</button>
+    </form>
+  </body>
+</html>

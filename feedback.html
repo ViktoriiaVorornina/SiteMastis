@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сторінка фідбеку</title>
+    <style>
+      /* Стилі для контейнера */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* Стилі для форми */
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px black;
+        width: 300px;
+      }
+
+      /* Стилі для тексту "Фідбек" */
+      h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      /* Стилі для текстових полів та кнопки */
+      input,
+      textarea {
+        display: block;
+        margin: 10px 0;
+        padding: 5px;
+        width: 100%;
+      }
+
+      button {
+        display: block;
+        margin: 10px auto;
+        background-color: orange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .feedback-container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #login-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px black;
+        width: 300px; /* Змініть ширину за потребою */
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="/submit-feedback">
+      <div class="feedback-container">
+        <h2>Фідбек</h2>
+        <p class="required-fields">Всі поля обов'язкові до заповнення</p>
+        <!-- Доданий напис під Фідбеком -->
+        <div class="error-messages">
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %}
+          <ul class="messages">
+            {% for category, message in messages %}
+            <li class="message-{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
+        </div>
+        <input
+          type="text"
+          name="event_name"
+          placeholder="Назва івенту"
+          required
+        />
+        <!-- Додано атрибут required -->
+        <textarea name="comment" placeholder="Коментар" required></textarea>
+        <!-- Додано атрибут required -->
+        <button type="submit">Відправити</button>
+      </div>
+      <div id="login-modal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="close-button">&times;</span>
+          <h2>Дякую</h2>
+          <p>Ваш коментар відправлено.</p>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
